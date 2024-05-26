@@ -11,30 +11,29 @@ class User(BaseModel):
     phone: Optional[str]
     current_balance: float
 
-    @Field
-    def name(cls, v):
-        if not v.isalpha():
-            raise ValueError('Name must contain only English letters')
-
-    @Field
-    def password(cls, v):
-        if not (8 <= len(v) <= 10):
-            raise ValueError('Password must be between 8 and 10 characters long')
-
     def validate_email(self):
-        if self.email and not self.email.endswith('@example.com'):
-            raise ValueError("Email must end with '@example.com'")
+        if self.email and not self.email.endswith('@gmail.com'):
+            raise ValueError("Email must end with '@gmail.com'")
 
     def validate_phone(self):
         phone_regex = r'^\+?1?\d{9,15}$'
         if self.phone and not re.match(phone_regex, self.phone):
             raise ValueError("Invalid phone number format")
 
+    def validate_password(self):
+        if not (8 <= len(self.password) <= 10):
+            raise ValueError('Password must be between 8 and 10 characters long')
+
+    def validate_name(self):
+        if not self.name.isalpha():
+            raise ValueError('Name must contain only English letters')
+
     def is_valid_user(self):
         try:
             self.validate_email()
             self.validate_phone()
-            self.validate()
+            self.validate_name()
+            self.validate_password()
             return True
-        except ValidationError:
-            return False
+        except ValueError as e:
+            raise ValueError(e)
