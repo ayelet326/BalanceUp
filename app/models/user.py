@@ -1,15 +1,25 @@
-from pydantic import BaseModel, ValidationError, EmailStr, constr
+from pydantic import BaseModel, ValidationError, EmailStr, constr, Field
 from typing import Optional
 import re
 
 
 class User(BaseModel):
     id: int
-    name: str
-    password: str
+    name: constr(min_length=3, max_length=8)
+    password: constr(min_length=8, max_length=10)
     email: Optional[EmailStr]
-    phone: Optional[str]  # Define phone as Optional[str]
+    phone: Optional[str]
     current_balance: float
+
+    @Field
+    def name(cls, v):
+        if not v.isalpha():
+            raise ValueError('Name must contain only English letters')
+
+    @Field
+    def password(cls, v):
+        if not (8 <= len(v) <= 10):
+            raise ValueError('Password must be between 8 and 10 characters long')
 
     def validate_email(self):
         if self.email and not self.email.endswith('@example.com'):
