@@ -25,3 +25,8 @@ async def update_user(user_id: ObjectId, user: User):
 
 async def delete_user(user_id: ObjectId):
     await users_collection.delete_one({"_id": user_id})
+
+
+async def find_user_by_credentials(username: str, password: str) -> User:
+    user_data = await users_collection.find_one({"name": username, "password": password})
+    return User(**user_data) if user_data else None
