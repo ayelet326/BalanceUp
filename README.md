@@ -2,13 +2,13 @@
 BalanceUp is a backend development project for a budget management application. The app allows users to manage their monthly budgets in a smart way, it provides functionality for users to register, login, update their details, add, update and retrieve their income and expenses. As well as data visualization for better financial insights using various graphs created with Matplotlib. The backend was developed in Python using the FastAPI framework, with  MongoDB Atlas as the database.
 ### Rable of Contents
 
- * [Features](#Features)
+ * [Features](#features)
 
- * [Technologies Used](#TechnologiesUsed)
+ * [Technologies Used](#technologies-used)
 
  * [File Tree](#filetree)
 
- * [Getting Started](#GettingStarted)
+ * [Getting Started](#Getting-Started)
 
  * [Usage](#Usage)
 
