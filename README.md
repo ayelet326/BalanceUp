@@ -6,7 +6,7 @@ BalanceUp is a backend development project for a budget management application. 
 
  * [Technologies Used](#technologies-used)
 
- * [File Tree](#filetree)
+ * [File Tree](#file-tree)
 
  * [Getting Started](#Getting-Started)
 
